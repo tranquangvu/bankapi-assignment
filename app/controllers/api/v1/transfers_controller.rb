@@ -10,7 +10,7 @@ module API
       private
 
       def transfer_params
-        params.require(:transfer).permit(:amount, :from_bank_account_id, :to_bank_account_id)
+        params.require(:transfer).permit(:amount, :from_bank_number, :to_bank_number)
       end
     end
   end

@@ -21,13 +21,13 @@ module Account
     private
 
     def verify_from_bank_account!
-      requested_customer.bank_accounts.find_by(id: transfer_attributes[:from_bank_account_id]) ||
-        raise(APIError::BadRequestError, 'Invalid transfer from_bank_account_id')
+      requested_customer.bank_accounts.find_by(bank_number: transfer_attributes[:from_bank_number]) ||
+        raise(APIError::BadRequestError, 'Invalid transfer from_bank_number')
     end
 
     def verify_to_bank_account!
-      BankAccount.find_by(id: transfer_attributes[:to_bank_account_id]) ||
-        raise(APIError::BadRequestError, 'Invalid transfer to_bank_account_id')
+      BankAccount.find_by(bank_number: transfer_attributes[:to_bank_number]) ||
+        raise(APIError::BadRequestError, 'Invalid transfer to_bank_number')
     end
 
     def verify_amount!
@@ -37,7 +37,7 @@ module Account
 
     def transfer_amount!(from_bank_account, to_bank_account, amount)
       # Use activeRecord pessimistic locking
-      # ref: https://api.rubyonrails.org/classes/ActiveRecord/Locking/Pessimistic.html
+      # reference: https://api.rubyonrails.org/classes/ActiveRecord/Locking/Pessimistic.html
       from_bank_account.lock!
       to_bank_account.lock!
 
