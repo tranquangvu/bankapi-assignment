@@ -52,7 +52,7 @@ RSpec.describe 'authentications', type: :request do
   end
 
   describe 'GET /api/v1/customers/me' do
-    let!(:customer) { create(:customer, password: 'password123') }
+    let!(:customer) { create(:customer) }
 
     def do_request
       get api_v1_customers_me_path, headers: auth_api_headers(customer)

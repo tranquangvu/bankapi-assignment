@@ -18,18 +18,10 @@
 #
 #  fk_rails_...  (customer_id => customers.id)
 #
-class BankAccount < ApplicationRecord
-  # constants
-  INITIAL_BALANCE = 1000
+class BankAccountSerializer < ApplicationSerializer
+  attributes :id, :balance, :bank_number, :customer_id, :created_at, :updated_at
 
-  # associations
-  belongs_to :customer
-
-  # validations
-  validates :bank_number, presence: true, length: { is: 16 }, uniqueness: true
-  validates :balance, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
-  def self.generate_uniq_bank_number
-    16.times.map { rand(0..9) }.join
+  attribute :balance do |object|
+    object.balance&.to_f&.round(2)
   end
 end

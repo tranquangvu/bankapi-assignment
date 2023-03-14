@@ -11,7 +11,7 @@
 #
 # Indexes
 #
-#  index_customers_on_email  (email)
+#  index_customers_on_email  (email) UNIQUE
 #
 require 'rails_helper'
 

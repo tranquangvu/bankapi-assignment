@@ -7,7 +7,7 @@ puts '~> Create customers'
   'Georgina Hazel'
 ].each do |customer_fulname|
   Customer.create!(
-    email: "#{arisha_barron.parameterize}@gobank.com",
+    email: "#{customer_fulname.parameterize}@gobank.com",
     password: 'password123',
     fullname: customer_fulname
   )

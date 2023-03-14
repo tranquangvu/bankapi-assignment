@@ -8,6 +8,8 @@ Rails.application.routes.draw do
         post :login, to: 'sessions#create'
         get :me, to: 'profiles#me'
       end
+
+      resources :bank_accounts, only: %i[create]
     end
   end
 end

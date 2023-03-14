@@ -3,14 +3,15 @@
 # Table name: bank_accounts
 #
 #  id          :bigint           not null, primary key
-#  balance     :decimal(10, 2)
-#  bank_number :string
+#  balance     :decimal(10, 2)   default(0.0), not null
+#  bank_number :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  customer_id :bigint
 #
 # Indexes
 #
+#  index_bank_accounts_on_bank_number  (bank_number) UNIQUE
 #  index_bank_accounts_on_customer_id  (customer_id)
 #
 # Foreign Keys
