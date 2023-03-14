@@ -3,11 +3,11 @@ module Restapi
     JSON.parse(response.body)
   end
 
-  def auth_api_headers(user)
+  def auth_api_headers(resource)
     {
       'Accept' => 'application/json',
       'Content-Type' => 'application/json',
-      'Authorization' => "Bearer #{user.auth_token}"
+      'Authorization' => "Bearer #{resource.auth_token}"
     }
   end
 end

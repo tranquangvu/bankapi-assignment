@@ -33,4 +33,30 @@ RSpec.describe BankAccount, type: :model do
     it { is_expected.to validate_presence_of(:balance) }
     it { is_expected.to validate_numericality_of(:balance).is_greater_than_or_equal_to(0) }
   end
+
+  describe '.generate_uniq_bank_number' do
+    it 'returns string with 16 digits' do
+      result = BankAccount.generate_uniq_bank_number
+      expect(result).to be_a(String)
+      expect(result.length).to eq(16)
+    end
+  end
+
+  describe '#add_balance' do
+    let!(:bank_account) { create(:bank_account, balance: 1000) }
+
+    it do
+      bank_account.add_balance!(10)
+      expect(bank_account.reload.balance).to eq(1010)
+    end
+  end
+
+  describe '#subtract_balance' do
+    let!(:bank_account) { create(:bank_account, balance: 1000) }
+
+    it do
+      bank_account.subtract_balance!(10)
+      expect(bank_account.reload.balance).to eq(990)
+    end
+  end
 end
