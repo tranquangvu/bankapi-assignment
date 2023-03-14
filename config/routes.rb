@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
 
       resources :bank_accounts, only: %i[create show]
+      resources :transfers, only:  %i[create index]
     end
   end
 end

@@ -19,7 +19,12 @@
 #  fk_rails_...  (customer_id => customers.id)
 #
 class BankAccountSerializer < ApplicationSerializer
-  attributes :id, :balance, :bank_number, :customer_id, :created_at, :updated_at
+  attributes :id,
+             :balance,
+             :bank_number,
+             :customer_id,
+             :created_at,
+             :updated_at
 
   attribute :balance do |object|
     object.balance&.to_f&.round(2)

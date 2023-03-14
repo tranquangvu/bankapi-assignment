@@ -14,5 +14,9 @@
 #  index_customers_on_email  (email) UNIQUE
 #
 class CustomerSerializer < ApplicationSerializer
-  attributes :id, :email, :fullname, :created_at, :updated_at
+  attributes :id,
+             :email,
+             :fullname,
+             :created_at,
+             :updated_at
 end

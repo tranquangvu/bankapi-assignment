@@ -34,4 +34,14 @@ class BankAccount < ApplicationRecord
   def self.generate_uniq_bank_number
     16.times.map { rand(0..9) }.join
   end
+
+  def add_balance!(amount)
+    self.balance += amount
+    save!
+  end
+
+  def subtract_balance!(amount)
+    self.balance -= amount
+    save!
+  end
 end

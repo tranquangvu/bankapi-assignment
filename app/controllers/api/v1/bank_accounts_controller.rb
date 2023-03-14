@@ -6,7 +6,7 @@ module API
       def create
         authorize(BankAccount)
         bank_account = Account::CreateBankAccountService.call(current_customer)
-        render_resource(bank_account, include_expenses: true, status: :created)
+        render_resource(bank_account, status: :created)
       end
 
       def show
