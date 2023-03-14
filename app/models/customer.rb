@@ -9,8 +9,15 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+# Indexes
+#
+#  index_customers_on_email  (email)
+#
 class Customer < ApplicationRecord
   has_secure_password
+
+  # associations
+  has_many :bank_accounts
 
   # validations
   validates :email, presence: true,

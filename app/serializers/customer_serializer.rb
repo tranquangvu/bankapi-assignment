@@ -9,6 +9,10 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
+# Indexes
+#
+#  index_customers_on_email  (email)
+#
 class CustomerSerializer < ApplicationSerializer
   attributes :id, :email, :fullname, :created_at, :updated_at
 end
