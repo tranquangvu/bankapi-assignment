@@ -36,8 +36,6 @@ module Account
     end
 
     def transfer_amount!(from_bank_account, to_bank_account, amount)
-      # Use activeRecord pessimistic locking
-      # reference: https://api.rubyonrails.org/classes/ActiveRecord/Locking/Pessimistic.html
       from_bank_account.lock!
       to_bank_account.lock!
 

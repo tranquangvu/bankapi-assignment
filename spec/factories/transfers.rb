@@ -21,6 +21,8 @@
 #
 FactoryBot.define do
   factory :transfer do
-    
+    amount { 10 }
+    association :from_bank_account, factory: :bank_account
+    association :to_bank_account, factory: :bank_account
   end
 end

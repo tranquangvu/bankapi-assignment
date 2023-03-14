@@ -26,4 +26,13 @@ class Transfer < ApplicationRecord
 
   # validations
   validates :amount, presence: true, numericality: { greater_than: 0 }
+  validate :must_not_transfer_to_your_self
+
+  private
+
+  def must_not_transfer_to_your_self
+    if from_bank_account_id.present? && to_bank_account_id.present? && from_bank_account_id == to_bank_account_id
+      errors.add(:to_bank_account, "can't be transfer to same bank account")
+    end
+  end
 end
