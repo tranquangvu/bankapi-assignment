@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_162806) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_181525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,5 +33,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_162806) do
     t.index ["email"], name: "index_customers_on_email", unique: true
   end
 
+  create_table "transfers", force: :cascade do |t|
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.bigint "from_bank_account_id"
+    t.bigint "to_bank_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["from_bank_account_id"], name: "index_transfers_on_from_bank_account_id"
+    t.index ["to_bank_account_id"], name: "index_transfers_on_to_bank_account_id"
+  end
+
   add_foreign_key "bank_accounts", "customers"
+  add_foreign_key "transfers", "bank_accounts", column: "from_bank_account_id"
+  add_foreign_key "transfers", "bank_accounts", column: "to_bank_account_id"
 end

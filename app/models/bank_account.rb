@@ -24,6 +24,8 @@ class BankAccount < ApplicationRecord
 
   # associations
   belongs_to :customer
+  has_many :sent_transfers, class_name: 'Transfer', foreign_key: :from_bank_account_id
+  has_many :received_transfers, class_name: 'Transfer', foreign_key: :to_bank_account_id
 
   # validations
   validates :bank_number, presence: true, length: { is: 16 }, uniqueness: true

@@ -23,6 +23,8 @@ require 'rails_helper'
 RSpec.describe BankAccount, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:customer) }
+    it { is_expected.to have_many(:sent_transfers).class_name('Transfer').with_foreign_key(:from_bank_account_id) }
+    it { is_expected.to have_many(:received_transfers).class_name('Transfer').with_foreign_key(:to_bank_account_id) }
   end
 
   describe 'validations' do

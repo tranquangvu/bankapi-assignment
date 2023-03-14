@@ -17,7 +17,7 @@ module API
       private
 
       def prepare_bank_account
-        @bank_account = BankAccount.find(params[:id])
+        @bank_account = current_customer.bank_accounts.find(params[:id])
       end
     end
   end
