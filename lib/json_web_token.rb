@@ -1,5 +1,5 @@
 class JsonWebToken
-  def self.encode(data, exp = 1.months.from_now)
+  def self.encode(data, exp = 1.day.from_now)
     payload = { data: data, exp: exp.to_i }
     JWT.encode(payload, secret)
   end
