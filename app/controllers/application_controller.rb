@@ -8,6 +8,10 @@ class ApplicationController < ActionController::API
 
   attr_reader :current_customer
 
+  def pundit_user
+    current_customer
+  end
+
   private
 
   def authenticate_customer!

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         get :me, to: 'profiles#me'
       end
 
-      resources :bank_accounts, only: %i[create]
+      resources :bank_accounts, only: %i[create show]
     end
   end
 end
