@@ -1,8 +1,6 @@
 module API
   module V1
     class TransfersController < BaseController
-      before_action :prepare_bank_account, only: %i[show]
-
       def create
         authorize(Transfer)
         transfer = Account::TransferBankAccountAmountService.call(current_customer, transfer_params)
