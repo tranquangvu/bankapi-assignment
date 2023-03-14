@@ -3,6 +3,11 @@ module API
     class BankAccountsController < BaseController
       before_action :prepare_bank_account, only: %i[show]
 
+      def index
+        bank_accounts = Account::GetAllBankAccountsOfCustomerService.call(current_customer)
+        render_resource_collection(bank_accounts, status: :ok)
+      end
+
       def create
         authorize(BankAccount)
         bank_account = Account::CreateBankAccountService.call(current_customer)

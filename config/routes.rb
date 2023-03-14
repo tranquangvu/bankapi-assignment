@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         post :login, to: 'sessions#create'
         get :me, to: 'profiles#me'
       end
-      resources :bank_accounts, only: %i[create show] do
+      resources :bank_accounts, only: %i[create show index] do
         scope module: :bank_accounts do
           resources :transfers, only: %i[index]
         end
