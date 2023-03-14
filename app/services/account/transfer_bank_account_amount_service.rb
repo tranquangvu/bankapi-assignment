@@ -22,17 +22,17 @@ module Account
 
     def verify_from_bank_account!
       requested_customer.bank_accounts.find_by(id: transfer_attributes[:from_bank_account_id]) ||
-        raise(APIError::BadRequestError('Invalid transfer from_bank_account_id'))
+        raise(APIError::BadRequestError, 'Invalid transfer from_bank_account_id')
     end
 
     def verify_to_bank_account!
       BankAccount.find_by(id: transfer_attributes[:to_bank_account_id]) ||
-        raise(APIError::BadRequestError('Invalid transfer to_bank_account_id'))
+        raise(APIError::BadRequestError, 'Invalid transfer to_bank_account_id')
     end
 
     def verify_amount!
       (transfer_attributes[:amount].positive? && transfer_attributes[:amount]) ||
-        raise(APIError::BadRequestError('Invalid transfer amount'))
+        raise(APIError::BadRequestError, 'Invalid transfer amount')
     end
 
     def transfer_amount!(from_bank_account, to_bank_account, amount)
